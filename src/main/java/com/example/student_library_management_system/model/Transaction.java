@@ -2,6 +2,8 @@ package com.example.student_library_management_system.model;
 
 import com.example.student_library_management_system.enums.TransactionName;
 import com.example.student_library_management_system.enums.TransactionStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,4 +41,14 @@ public class Transaction {
 
     @Column(name = "due_date")
     private Date dueDate;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn
+    private Book book;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn
+    private Card card;
 }

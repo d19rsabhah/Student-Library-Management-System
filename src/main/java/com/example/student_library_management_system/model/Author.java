@@ -2,10 +2,14 @@ package com.example.student_library_management_system.model;
 
 
 import com.example.student_library_management_system.enums.AuthorRating;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -32,5 +36,7 @@ public class Author {
     @Column(name = "author_age")
     private int age;
 
-
+    @JsonManagedReference
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Book> booksWrittenByAuthor = new ArrayList<>();
 }
