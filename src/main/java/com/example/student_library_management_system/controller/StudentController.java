@@ -18,7 +18,6 @@ public class StudentController {
 
     @PostMapping("/create")
     public String saveStudent(@RequestBody StudentRequestDto studentRequestDto){
-        String response1 = studentService.saveStudents(studentRequestDto);
-        return response1;
+        return studentService.saveStudents(studentRequestDto);
     }
 }

@@ -15,8 +15,9 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+
     public String saveStudents(StudentRequestDto studentRequestDto){
-        Student student = StudentConverter.convertRequestDtIntoStudentModel(studentRequestDto);
+        Student student = StudentConverter.convertRequestDtoIntoStudentModel(studentRequestDto);
 
         Card card = new Card();
         card.setCardStatus(CardStatus.ACTIVE);
