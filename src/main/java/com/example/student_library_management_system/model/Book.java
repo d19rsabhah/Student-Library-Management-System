@@ -53,4 +53,5 @@ public class Book {
     @ManyToOne
     @JoinColumn
     private Card card;
+
 }
