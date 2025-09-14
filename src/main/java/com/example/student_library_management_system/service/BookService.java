@@ -10,6 +10,9 @@ import com.example.student_library_management_system.requestdto.BookRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Service
 public class BookService {
@@ -30,5 +33,10 @@ public class BookService {
 
         return "book details are saved in the database!";
 
+    }
+
+
+    public List<Book> getAllBoooks(){
+        return bookRepository.findAll();
     }
 }

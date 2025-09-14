@@ -21,7 +21,6 @@ public class TransactionController {
 
     @PostMapping("/create")
     public String saveTransaction(@RequestBody TransactionRequestDto transactionRequestDto) throws ParseException {
-        String response = transactionServeice.createTransaction(transactionRequestDto);
-        return response;
+        return transactionServeice.createTransaction(transactionRequestDto);
     }
 }

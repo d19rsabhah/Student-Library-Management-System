@@ -42,4 +42,6 @@ public class Author {
     @JsonManagedReference
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Book> booksWrittenByAuthor = new ArrayList<>();
+
+
 }

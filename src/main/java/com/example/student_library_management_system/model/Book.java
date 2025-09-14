@@ -2,6 +2,7 @@ package com.example.student_library_management_system.model;
 
 import com.example.student_library_management_system.enums.BookGenre;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -40,10 +41,15 @@ public class Book {
     @Column(name = "quantity")
     private int quantity;
 
-    @JsonBackReference
+//    @JsonBackReference
+//    @ManyToOne
+//    @JoinColumn
+//    private Author author;
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties("booksWrittenByAuthor")  // prevent recursion
     private Author author;
+
 
     @JsonManagedReference
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)

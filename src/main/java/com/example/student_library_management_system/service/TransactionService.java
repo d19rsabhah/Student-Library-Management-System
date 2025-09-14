@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Service
@@ -42,11 +43,11 @@ public class TransactionService {
         transaction.setBook(book);
 
         // add the due date to transaction
-        if(transactionRequestDto.getTransaction_name().equals(TransactionName.PURCHASE)) {
-            Date dueDate = new SimpleDateFormat("dd-MM-yyyy").parse(LocalDate.now().plusDays(7).toString());
-            transaction.setDueDate(dueDate);
-            transaction.setFine(0.00);
-        }
+        LocalDate localDate = LocalDate.now().plusDays(90);
+        Date dueDate = new SimpleDateFormat("dd-MM-yyyy")
+                .parse(localDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        transaction.setDueDate(dueDate);
+
 //        else {
 //            // if transaction name is return due date will already be there
 //            // calculate the fine

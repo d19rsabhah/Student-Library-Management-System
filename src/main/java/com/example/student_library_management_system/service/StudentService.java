@@ -29,4 +29,9 @@ public class StudentService {
 
         return "Student And Card Saved Successfully!";
     }
+
+    public String deleteStudentById(int studentId){
+        studentRepository.deleteById(studentId);
+        return "Student deleted successfully.";
+    }
 }
