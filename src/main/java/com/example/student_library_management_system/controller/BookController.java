@@ -38,4 +38,41 @@ public class BookController {
     public List<Book> getAllBooks(){
         return bookService.getAllBoooks();
     }
+
+    @GetMapping("/findPage")
+    public List<Book> getAllBooksOnPagination(@RequestParam("pageno") int pageNo, @RequestParam("pagesize") int pageSize){
+        return bookService.getBookPagination(pageNo,pageSize);
+    }
+    @GetMapping("/findSortedPage")
+    public List<Book> getAllBooksOnSortedPages(@RequestParam("pageno") int pageNo, @RequestParam("pagesize") int pageSize, @RequestParam("sortparameter") String sortParameter){
+        return bookService.getSortedPages(pageNo,pageSize, sortParameter);
+    }
+
+    @GetMapping("/findByTitle")
+    public Book getBooksByTitle(@RequestParam("title") String title){
+        return bookService.getBookByTitle(title);
+
+    }
+
+    @GetMapping("/findByGenre")
+    public List<Book> getBooksByGenre(@RequestParam("genre") String genre){
+        return bookService.getBookByGenre(genre);
+    }
+
+    @GetMapping("/findByTitleAndQuantity")
+    public Book getBooksByTitleAndQuantity(@RequestParam("title") String title, @RequestParam("quantity") int quantity){
+        return bookService.getTitleAndQuantity(title, quantity);
+    }
+
+
+//    @GetMapping("/findCustom")
+//    public List<Book> findCustom(
+//            @RequestParam String genre,
+//            @RequestParam int minPages,
+//            @RequestParam int quantity) {
+//        return bookService.getCustomBooks(genre, minPages, quantity);
+//    }
+
+
+
 }
