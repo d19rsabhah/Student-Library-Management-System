@@ -6,6 +6,7 @@ import com.example.student_library_management_system.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,8 +50,13 @@ public class BookController {
     }
 
     @GetMapping("/findByTitle")
-    public Book getBooksByTitle(@RequestParam("title") String title){
-        return bookService.getBookByTitle(title);
+    public ResponseEntity<?> getBooksByTitle(@RequestParam("title") String title){
+        try{
+            Book book = bookService.getBookByTitle(title);
+            return ResponseEntity.ok(book);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Exception Occured : " + e.getMessage());
+        }
 
     }
 

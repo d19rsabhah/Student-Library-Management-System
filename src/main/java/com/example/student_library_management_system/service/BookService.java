@@ -57,7 +57,11 @@ public class BookService {
         return bookPage.getContent(); // <-- get the actual books from the page
     }
     public Book getBookByTitle(String title){
-        return bookRepository.findByTitle(title);
+        Book book = bookRepository.findByTitle(title);
+        if(book == null){
+            throw new RuntimeException("Book not found!");
+        }
+        return book;
     }
     //inputGenre
     public List<Book> getBookByGenre(String inputGenre){
