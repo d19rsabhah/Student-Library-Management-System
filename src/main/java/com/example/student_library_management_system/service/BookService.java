@@ -3,6 +3,7 @@ package com.example.student_library_management_system.service;
 import com.example.student_library_management_system.converter.BookConverter;
 
 import com.example.student_library_management_system.enums.BookGenre;
+import com.example.student_library_management_system.exception.BookNotFoundException;
 import com.example.student_library_management_system.model.Author;
 import com.example.student_library_management_system.model.Book;
 import com.example.student_library_management_system.repository.AuthorRepository;
@@ -56,10 +57,10 @@ public class BookService {
         Page<Book> bookPage = bookRepository.findAll(PageRequest.of(pageNumber, pageSize, Sort.by(sortParameter).ascending()));
         return bookPage.getContent(); // <-- get the actual books from the page
     }
-    public Book getBookByTitle(String title){
+    public Book getBookByTitle(String title) {
         Book book = bookRepository.findByTitle(title);
-        if(book == null){
-            throw new RuntimeException("Book not found!");
+        if (book == null) {
+            throw new BookNotFoundException("Book not found with title: " + title);
         }
         return book;
     }

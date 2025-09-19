@@ -50,14 +50,9 @@ public class BookController {
     }
 
     @GetMapping("/findByTitle")
-    public ResponseEntity<?> getBooksByTitle(@RequestParam("title") String title){
-        try{
-            Book book = bookService.getBookByTitle(title);
-            return ResponseEntity.ok(book);
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().body("Exception Occured : " + e.getMessage());
-        }
-
+    public ResponseEntity<Book> getBooksByTitle(@RequestParam("title") String title) {
+        Book book = bookService.getBookByTitle(title);
+        return ResponseEntity.ok(book);
     }
 
     @GetMapping("/findByGenre")
